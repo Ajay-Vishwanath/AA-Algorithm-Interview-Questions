@@ -77,12 +77,21 @@ class MinMaxStack {
         this.top = null;
         this.bottom = null;
         this.length = 0;
-        // this.max = null;
-        // this.min = null;
+        this.maxArray = [];
+        this.minArray = [];
     }
 
     push(val) {
         const newNode = new Node(val);
+
+        if (!this.maxArray.length || newNode.value >= this.maxArray[this.maxArray.length -1].value){
+            this.maxArray.push(newNode)
+        }
+
+        if (!this.minArray.length || newNode.value <= this.minArray[this.minArray.length -1].value){
+            this.minArray.push(newNode)
+        }
+
         if (!this.top) {
             this.top = newNode;
             this.bottom = newNode;
@@ -98,10 +107,18 @@ class MinMaxStack {
         if (!this.top) {
             return null;
         }
-        const temp = this.top;
+        const temp = this.top
         if (this.top === this.bottom) {
             this.bottom = null;
         }
+
+        if (this.maxArray[this.maxArray.length -1] === temp) {
+            this.maxArray.pop()
+        }
+        if (this.minArray[this.minArray.length -1] === temp){
+            this.minArray.pop()
+        }
+
         this.top = this.top.next;
         this.length--;
         return temp;
@@ -112,14 +129,11 @@ class MinMaxStack {
     }
 
     min(){
-        if (this.length === 0){
-            return null 
-        }
-        // return this.min
+        return this.minArray[this.minArray.length -1] || null 
     }
 
     max(){
-        // return this.max 
+        return this.maxArray[this.maxArray.length -1] || null 
     }
 }
 

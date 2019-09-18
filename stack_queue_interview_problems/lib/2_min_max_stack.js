@@ -137,8 +137,6 @@ class MinMaxStack {
     }
 }
 
-console.log(Object.getOwnPropertyNames(MinMaxStack.prototype));
-
 // Forgetting something down here? 
 exports.Node = Node;
 exports.MinMaxStack = MinMaxStack;

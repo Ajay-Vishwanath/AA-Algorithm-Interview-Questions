@@ -72,11 +72,13 @@ class Node {
 }
 
 // Refactor the regular Stack below into a MinMaxStack!
-class Stack {
+class MinMaxStack {
     constructor() {
         this.top = null;
         this.bottom = null;
         this.length = 0;
+        // this.max = null;
+        // this.min = null;
     }
 
     push(val) {
@@ -102,14 +104,27 @@ class Stack {
         }
         this.top = this.top.next;
         this.length--;
-        return temp.value;
+        return temp;
     }
 
-    size() {
+    size(){
         return this.length;
+    }
+
+    min(){
+        if (this.length === 0){
+            return null 
+        }
+        // return this.min
+    }
+
+    max(){
+        // return this.max 
     }
 }
 
+console.log(Object.getOwnPropertyNames(MinMaxStack.prototype));
+
 // Forgetting something down here? 
 exports.Node = Node;
-exports.Stack = Stack;
+exports.MinMaxStack = MinMaxStack;

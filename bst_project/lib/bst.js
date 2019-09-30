@@ -8,7 +8,57 @@ class TreeNode {
 
 
 class BST {
-   
+    constructor(val){
+        this.root = null;
+    }
+
+    insert(val, root=this.root){
+        let node = new TreeNode(val)
+        if (!this.root){
+            this.root = node;
+            return;
+        } else if (val < root.val){
+            if (!root.left){
+                root.left = node;
+            } else {
+                this.insert(val, root.left);
+            }
+        } else {
+            if (!root.right){
+                root.right = node;
+            } else {
+                this.insert(val, root.right);
+            }
+        }
+    }
+
+    searchRecur(val, root=this.root){
+        if (!root) return false;
+
+        if (val < root.val){
+            return this.searchRecur(val, root.left)
+        } else if (val > root.val){
+            return this.searchRecur(val, root.right)
+        } else {
+            return true
+        }
+    }
+
+    searchIter(val){
+        let curr = this.root;
+
+        while (curr){
+            if (val < curr.val){
+                curr = curr.left;
+            } else if (val > curr.val){
+                curr = curr.right
+            } else {
+                return true 
+            }
+        }
+        
+        return false;
+    }
 }
 
 module.exports = {
